@@ -14,9 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
- 
- 
-            $this->call([
+        $this->call([
             RolesTableSeeder::class,
             UsersTableSeeder::class,
             ProfilesTableSeeder::class,
@@ -24,14 +22,12 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             GradeLevelSeeder::class,
             SectionSeeder::class,
-             AcademicYearSeeder::class,
-            
-            
+            AcademicYearSeeder::class,
+            StudentSeeder::class,
         ]);
 
         User::factory(20)->create()->each(function ($user) {
-        Profile::factory()->create(['user_id' => $user->id]);
-    });
-
+            Profile::factory()->create(['user_id' => $user->id]);
+        });
     }
 }
