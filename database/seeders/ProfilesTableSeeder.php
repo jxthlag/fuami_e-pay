@@ -4,27 +4,48 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Profile;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
-class ProfilesTableSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-            Profile::create([
-            'user_id' => User::where('username', 'admin')->first()->id,
-            'firstname' => 'Zhie',
-            'lastname' => 'Bautista',
-            'phone_number' => '9277294457',
-            'address' => 'Doongan',
-            'profile_picture' => 'path/to/pic.jpg',
-            'birthdate' => '1993-10-13',
-            'gender' => 'Male',
-            'nationality' => 'Filipino',
-            'bio' => 'Developer.',
+        User::create([
+            'username' => 'zear',
+            'email' => 'developer@zear.com',
+            'password' => Hash::make('password'),
+            'role_id' => 1, 
+            'isDeleted' => false,
+            'isActive' => true,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+
+        User::create([
+            'username' => 'admin',
+            'email' => 'admin@zear.com',
+            'password' => Hash::make('password'),
+            'role_id' => 2, 
+            'isDeleted' => false,
+            'isActive' => true,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+
+
+          User::create([
+            'username' => 'cashier',
+            'email' => 'cashier@zear.com',
+            'password' => Hash::make('password'),
+            'role_id' => 3, 
+            'isDeleted' => false,
+            'isActive' => true,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
