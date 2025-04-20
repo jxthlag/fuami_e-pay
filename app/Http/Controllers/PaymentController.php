@@ -305,7 +305,7 @@ public function records()
     // Fetch payments and format the month-year
     $payments = Payment::all();  // Or any query you're using to get the data
 
-    $monthYears = Payment::selectRaw("DATE_FORMAT(payment_date, '%Y-%m') as month_year")
+    $monthYears = Payment::selectRaw("to_char(payment_date, 'YYYY-MM') as month_year")
                           ->distinct()
                           ->get()
                           ->pluck('month_year');
