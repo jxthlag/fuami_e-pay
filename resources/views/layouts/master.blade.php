@@ -306,7 +306,7 @@
     {{ config('app.custom_name') }}
   </div>
   <!-- Default to the left -->
-     <strong>Copyright &copy; 2025 <a href="https://www.facebook.com/profile.php?id=61572728822378">MGX TECH</a>.</strong> All rights reserved.
+     <strong>Copyright &copy; 2025 <a href="https://www.facebook.com/fuami2010">Urios Magallanes</a>.</strong> All rights reserved.
 </footer>
 </div>
 <!-- ./wrapper -->
