@@ -77,8 +77,10 @@
                             <x-form.int-field label="Phone Number" name="phone_number" maxlength="12" />
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="birthdate">Birthdate</label>
-                            <input type="date" name="birthdate" id="birthdate" class="form-control">
+                   
+
+
+                            <x-form.birthdate label="Date of Birth" name="birthdate" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="gender">Gender</label>
