@@ -107,8 +107,7 @@
                     <h5 class="mt-4">Account Information</h5>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="username">Username</label>
-                            <input type="text" name="username" id="username" class="form-control" required>
+<x-form.username label="Username" name="username" />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="email">Email</label>
@@ -118,13 +117,18 @@
 
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="password" class="form-control" required>
+                            <x-form.password/>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="password_confirmation">Confirm Password</label>
-                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
-                        </div>
+               <div class="form-group col-md-6">
+    <label for="password_confirmation">Confirm Password</label>
+    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
+    <small id="confirm-password-warning" class="text-danger d-none">
+        *Passwords do not match.
+    </small>
+</div>
+
+
+
                     </div>
 
                     <div class="text-center mt-4">
@@ -149,5 +153,64 @@
         }
     });
 </script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const password = document.getElementById('password');
+    const confirm = document.getElementById('password_confirmation');
+    const warning = document.getElementById('confirm-password-warning');
+
+    function validateMatch() {
+        if (confirm.value !== password.value) {
+            warning.classList.remove('d-none');
+        } else {
+            warning.classList.add('d-none');
+        }
+    }
+
+    confirm.addEventListener('input', validateMatch);
+    password.addEventListener('input', validateMatch);
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form'); // adjust selector if needed
+    const requiredFields = form.querySelectorAll('[required]');
+
+    form.addEventListener('submit', function (e) {
+        let hasError = false;
+
+        requiredFields.forEach(field => {
+            const errorFeedback = field.nextElementSibling;
+            if (!field.value.trim()) {
+                field.classList.add('is-invalid');
+
+                // Show a default error if not already provided by Laravel
+                if (errorFeedback && !errorFeedback.classList.contains('invalid-feedback')) {
+                    const div = document.createElement('div');
+                    div.className = 'invalid-feedback';
+                    div.innerText = 'This field is required.';
+                    field.after(div);
+                }
+
+                hasError = true;
+            } else {
+                field.classList.remove('is-invalid');
+                if (errorFeedback && errorFeedback.classList.contains('invalid-feedback')) {
+                    errorFeedback.remove();
+                }
+            }
+        });
+
+        if (hasError) {
+            e.preventDefault(); // Stop form submission
+        }
+    });
+});
+</script>
+
 
 @endsection
