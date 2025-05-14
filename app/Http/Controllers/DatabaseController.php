@@ -8,28 +8,30 @@ use Illuminate\Support\Facades\Schema;
 
 class DatabaseController extends Controller
 {
-    public function showTables()
+public function index()
 {
-    $tables = DB::select('SHOW TABLES');
     $database = env('DB_DATABASE');
+    $tables = DB::select('SHOW TABLES');
+    $key = "Tables_in_$database";
+    $tableNames = collect($tables)->pluck($key)->toArray();
 
-    $tableKey = "Tables_in_$database";
+    return view('admin.db-viewer', compact('tableNames'));
+}
 
-    $tablesInfo = [];
+public function fetchTable(Request $request)
+{
+    $table = $request->table;
 
-    foreach ($tables as $table) {
-        $tableName = $table->$tableKey;
-
-        $columns = Schema::getColumnListing($tableName);
-        $rowCount = DB::table($tableName)->count();
-
-        $tablesInfo[] = [
-            'name' => $tableName,
-            'columns' => $columns,
-            'rows' => $rowCount,
-        ];
+    if (!Schema::hasTable($table)) {
+        return response()->json(['error' => 'Table not found.'], 404);
     }
 
-    return view('admin.database-overview', compact('tablesInfo'));
+    $columns = Schema::getColumnListing($table);
+    $rows = DB::table($table)->limit(100)->get(); // Limit for performance
+
+    return response()->json([
+        'columns' => $columns,
+        'rows' => $rows
+    ]);
 }
 }

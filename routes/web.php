@@ -23,6 +23,8 @@ use App\Http\Controllers\GcashInformationController;
 use App\Http\Controllers\FeeBreakdownController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\GcashTransactionController;
+use App\Http\Controllers\DatabaseController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +36,10 @@ use App\Http\Controllers\GcashTransactionController;
 |
 */
 
-Route::get('/admin/db-tables', [DatabaseController::class, 'showTables'])->middleware('auth');
+
+Route::get('/admin/db-viewer', [DatabaseController::class, 'index'])->name('db.viewer');
+Route::get('/admin/db-viewer/fetch', [DatabaseController::class, 'fetchTable'])->name('db.viewer.fetch');
+
 
 Route::get('/', function () { return redirect('/login');});
 Route::get('/error', function () {return view('error.index');})->name('error');
