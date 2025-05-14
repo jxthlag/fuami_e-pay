@@ -11,7 +11,8 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.6",
-        "phpoffice/phpword": "^1.3"
+        "phpoffice/phpword": "^1.3",
+        "spatie/laravel-activitylog": "dev-main"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

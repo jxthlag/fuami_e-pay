@@ -7,61 +7,54 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-
-
-protected static $logAttributes = [
-    'username',
-    'email',
-    'password',
-    'role_id',
-    'isDeleted',
-    'isActive'
-];
-
-public static function boot()
-{
-    parent::boot();
-
-    // Log when created or updated
-    static::saved(function ($model) {
-        $logName = 'user_activity';
-        $action = $model->wasRecentlyCreated ? 'created' : 'updated';
-
-        activity($logName)
-            ->performedOn($model)
-            ->causedBy(auth()->user())
-            ->log("User $action");
-    });
-
-    // Log when deleted
-    static::deleted(function ($model) {
-        $logName = 'user_activity';
-
-        activity($logName)
-            ->performedOn($model)
-            ->causedBy(auth()->user())
-            ->log("User deleted");
-    });
-}
-
-
-
-
+    use HasApiTokens, HasFactory, Notifiable, LogsActivity;
 
     protected $table = 'users'; 
     protected $fillable = ['username', 'email', 'password', 'role_id', 'isDeleted', 'isActive'];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly([
+                'username',
+                'email',
+                'password',
+                'role_id',
+                'isDeleted',
+                'isActive'
+            ])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        // Log when created or updated
+        static::saved(function ($model) {
+            $action = $model->wasRecentlyCreated ? 'created' : 'updated';
+            $model->logActivity("User {$action}");
+        });
+
+        // Log when deleted
+        static::deleted(function ($model) {
+            $model->logActivity("User deleted");
+        });
+    }
+
+    protected function logActivity(string $description)
+    {
+        activity()
+            ->performedOn($this)
+            ->causedBy(auth()->user())
+            ->log($description);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -83,15 +76,10 @@ public static function boot()
         'password' => 'hashed',
     ];
 
-
-
-
-public function profile()
-{
-    return $this->hasOne(Profile::class, 'user_id');
-}
-
- 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class, 'user_id');
+    }
 
     // Define the relationship with the Role model
     public function role()
@@ -99,17 +87,8 @@ public function profile()
         return $this->belongsTo(Role::class);
     }
 
-
-
-public function enrollmentHistories()
-{
-    return $this->hasMany(EnrollmentHistory::class);
-}
-
-
-
-
-
-
-
+    public function enrollmentHistories()
+    {
+        return $this->hasMany(EnrollmentHistory::class);
+    }
 }
