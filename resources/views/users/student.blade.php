@@ -53,23 +53,28 @@
                     <!-- Personal Information -->
                     <div class="row mt-4">
                         <div class="form-group col-md-4">
-                            <label for="lrn">LRN (Learner Reference Number)</label>
-                            <input type="text" name="lrn" id="lrn" class="form-control" required>
+                  
+
+
+
+<x-form.int-field label="LRN (Learner Reference Number)" name="lrn" maxlength="13" />
+
+
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="firstname">First Name</label>
-                            <input type="text" name="firstname" id="firstname" class="form-control" required>
+                            <x-form.string-field label="First Name" name="firstname" maxlength="26" />
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="lastname">Last Name</label>
-                            <input type="text" name="lastname" id="lastname" class="form-control" required>
+                            <x-form.string-field label="Last Name" name="lastname" maxlength="26" />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-4">
-                            <label for="phone_number">Phone Number</label>
-                            <input type="text" name="phone_number" id="phone_number" class="form-control">
+                    
+
+
+                            <x-form.int-field label="Phone Number" name="phone_number" maxlength="12" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="birthdate">Birthdate</label>
@@ -87,8 +92,8 @@
 
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="nationality">Nationality</label>
-                            <input type="text" name="nationality" id="nationality" class="form-control">
+             
+                            <x-form.string-field label="Nationality" name="nationality" maxlength="26" />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="address">Address</label>
