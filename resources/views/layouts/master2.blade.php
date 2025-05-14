@@ -172,7 +172,7 @@
      <div class="main-header topnavs tops">
 
   <img src="footerlogo.png" alt="AdminLTE Logo" class="logo-img">
-  <span class="custom-title">FATHER URIOS ACADEMY OF MAGALLANES, INCORPORATED</span>
+  <span class="custom-title">FATHER URIOS ACADEMY OF MAGALLANES, INC.</span>
 </div>
     <!-- /.navbar -->
     <!-- Content Wrapper. Contains page content -->
@@ -208,7 +208,7 @@
     </div>
   </div>
   <!-- Default to the left -->
-  <strong>Copyright &copy; 2025 <a href="https://www.facebook.com/fuami2010">Urios Magallanes</a>.</strong> All rights reserved.
+  <strong>Copyright &copy; 2025 <a href="https://www.facebook.com/profile.php?id=61572728822378">MGX TECH</a>.</strong> All rights reserved.
 </footer>
 </div>
 <!-- ./wrapper -->
