@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-// use Spatie\Activitylog\Traits\LogsActivity;
-
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
@@ -25,31 +24,31 @@ protected static $logAttributes = [
     'isActive'
 ];
 
-// public static function boot()
-// {
-//     parent::boot();
+public static function boot()
+{
+    parent::boot();
 
-//     // Log when created or updated
-//     static::saved(function ($model) {
-//         $logName = 'user_activity';
-//         $action = $model->wasRecentlyCreated ? 'created' : 'updated';
+    // Log when created or updated
+    static::saved(function ($model) {
+        $logName = 'user_activity';
+        $action = $model->wasRecentlyCreated ? 'created' : 'updated';
 
-//         activity($logName)
-//             ->performedOn($model)
-//             ->causedBy(auth()->user())
-//             ->log("User $action");
-//     });
+        activity($logName)
+            ->performedOn($model)
+            ->causedBy(auth()->user())
+            ->log("User $action");
+    });
 
-//     // Log when deleted
-//     static::deleted(function ($model) {
-//         $logName = 'user_activity';
+    // Log when deleted
+    static::deleted(function ($model) {
+        $logName = 'user_activity';
 
-//         activity($logName)
-//             ->performedOn($model)
-//             ->causedBy(auth()->user())
-//             ->log("User deleted");
-//     });
-// }
+        activity($logName)
+            ->performedOn($model)
+            ->causedBy(auth()->user())
+            ->log("User deleted");
+    });
+}
 
 
 
