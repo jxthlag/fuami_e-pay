@@ -34,20 +34,20 @@ public static function boot()
         $logName = 'user_activity';
         $action = $model->wasRecentlyCreated ? 'created' : 'updated';
 
-        activity($logName)
-            ->performedOn($model)
-            ->causedBy(auth()->user())
-            ->log("User $action");
+        // activity($logName)
+        //     ->performedOn($model)
+        //     ->causedBy(auth()->user())
+        //     ->log("User $action");
     });
 
     // Log when deleted
     static::deleted(function ($model) {
         $logName = 'user_activity';
 
-        activity($logName)
-            ->performedOn($model)
-            ->causedBy(auth()->user())
-            ->log("User deleted");
+        // activity($logName)
+        //     ->performedOn($model)
+        //     ->causedBy(auth()->user())
+        //     ->log("User deleted");
     });
 }
 
