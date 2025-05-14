@@ -340,7 +340,9 @@ public function records()
     $cashierName =[];
         return response()->json([
         'status' => 'success',
-
+        'payments' => $payments,
+        'month_years' => $monthYears,
+        'cashier_name' => $cashierName,
     ]);
 
 
