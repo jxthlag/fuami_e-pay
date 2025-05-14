@@ -66,6 +66,7 @@ $profile->fill([
     'bio'            => $request->bio ?? '',
     'gender'         => $request->gender ?? '',
     'nationality'    => $request->nationality ?? '',
+    'birthdate'    => $request->birthdate ?? '',
 ]);
 
 // Save profile

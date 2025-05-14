@@ -3,7 +3,8 @@
     'name' => 'username',
     'maxlength' => 21,
     'placeholder' => '',
-    'required' => true
+    'required' => true,
+       'value' => '', // default fallback
 ])
 
 <label for="{{ $name }}">{{ $label }}</label>
@@ -19,7 +20,7 @@
     type="text"
     id="{{ $name }}"
     name="{{ $name }}"
-    value="{{ old($name) }}"
+    value="{{ $value }}"
     maxlength="{{ $maxlength }}"
     {{ $required ? 'required' : '' }}
     placeholder="{{ $placeholder }}"

@@ -2,7 +2,7 @@
     'label' => 'Password',
     'name' => 'password',
     'placeholder' => '',
-    'required' => true
+    'required' => false
 ])
 
 <label for="{{ $name }}">{{ $label }}</label>

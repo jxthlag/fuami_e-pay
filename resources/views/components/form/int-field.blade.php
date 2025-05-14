@@ -20,7 +20,8 @@
     type="text"
     id="{{ $name }}"
     name="{{ $name }}"
-    value="{{ old($name) }}"
+    value="{{ old($name, optional($profile)->$name ?? '') }}"
+
     maxlength="{{ $maxlength }}"
     {{ $required ? 'required' : '' }}
     placeholder="{{ $placeholder }}"

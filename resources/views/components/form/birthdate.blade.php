@@ -14,7 +14,7 @@
     type="date"
     id="{{ $name }}"
     name="{{ $name }}"
-    value="{{ old($name) }}"
+    value="{{ old($name, optional($profile)->$name ?? '') }}"
     max="{{ now()->subDay()->toDateString() }}"
     {{ $required ? 'required' : '' }}
     class="form-control @error($name) is-invalid @enderror"

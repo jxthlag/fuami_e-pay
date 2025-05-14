@@ -117,7 +117,7 @@
 
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <x-form.password/>
+                            <x-form.password required />
                         </div>
                <div class="form-group col-md-6">
     <label for="password_confirmation">Confirm Password</label>

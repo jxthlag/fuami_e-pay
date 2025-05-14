@@ -30,6 +30,8 @@ Profile Management
     <div class="card card-primary card-outline">
       <div class="card-body box-profile">
         <div class="text-center">
+
+
          <form action="{{ route('profiles.updatePicture', $user->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -41,8 +43,11 @@ Profile Management
         ? asset('storage/' . optional($profile)->profile_picture) 
         : asset('dist/img/user2-160x160.jpg') }}"
     alt="User profile picture">
+
+
         </div>
         <h3 class="profile-username text-center">{{ optional($profile)->full_name ?? 'Temporary User' }}</h3>
+
         <p class="text-muted text-center">{{ auth()->user()->role->role_name }}</p>
         <div class="text-center">
         <label for="profile_picture" class="btn btn-outline-primary ">
@@ -56,6 +61,7 @@ Profile Management
 <!-- /.card-body -->
 </div>
 <!-- /.card -->
+
 </div>
 <!-- /.col -->
 <div class="col-md-9">
@@ -70,22 +76,28 @@ Profile Management
     <div class="card-body">
         <div class="tab-content">
           <div class="active tab-pane" id="information">
-                <!-- Profile Information Form -->
+                             <!-- Profile Information Form -->
                 <form action="{{ route('profiles.update', $user->id) }}" method="POST">
                     @csrf
                     @method('PUT')
+
                     <!-- First Name and Last Name -->
-
-
                     <div class="row">
                         <!-- First Name -->
                         <div class="form-group col-md-6">
-                            <x-form.string-field label="First Name" name="firstname" value="{{ optional($profile)->firstname ?? '' }}" maxlength="26" required />
+                            <label for="firstname">First Name</label>
+                       <input type="text" id="firstname" name="firstname" 
+       value="{{ optional($profile)->firstname ?? '' }}" 
+       class="form-control" required>
                         </div>
 
                         <!-- Last Name -->
                         <div class="form-group col-md-6">
-                            <x-form.string-field label="Last Name" name="lastname" value="{{ optional($profile)->lastname ?? '' }}" maxlength="26" required />
+                            <label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" name="lastname" 
+       value="{{ optional($profile)->lastname ?? '' }}" 
+       class="form-control" required>
+
                         </div>
                     </div>
 
@@ -93,19 +105,26 @@ Profile Management
                     <div class="row">
                         <!-- Phone -->
                         <div class="form-group col-md-6">
-                            <x-form.int-field label="Phone Number" name="phone_number" value="{{ optional($profile)->phone_number ?? '' }}" maxlength="12" />
+                            <label for="phone_number">Phone Number</label>
+                          <input type="text" id="phone_number" name="phone_number" 
+       value="{{ optional($profile)->phone_number ?? '' }}" 
+       class="form-control">
+
                         </div>
 
                         <!-- Birthdate -->
                         <div class="form-group col-md-6">
-                            <x-form.birthdate label="Birthdate" name="birthdate" value="{{ optional($profile)->birthdate ?? '' }}" />
+                            <label for="birthdate">Birthdate</label>
+                            <input type="date" id="birthdate" name="birthdate" 
+       value="{{ optional($profile)->birthdate ?? '' }}" 
+       class="form-control">
                         </div>
                     </div>
 
                     <!-- Gender and Nationality -->
                     <div class="row">
                         <!-- Gender -->
-                   <div class="form-group col-md-6">
+    <div class="form-group col-md-6">
     <label for="gender">Gender</label>
     <select id="gender" name="gender" class="form-control">
         <option value="Male" {{ optional($profile)->gender == 'Male' ? 'selected' : '' }}>Male</option>
@@ -114,22 +133,28 @@ Profile Management
     </select>
 </div>
 
+
                         <!-- Nationality -->
-                        <div class="form-group col-md-6">
-                            <x-form.string-field label="Nationality" name="nationality" value="{{ optional($profile)->nationality }}" maxlength="26" />
-                        </div>
+                  <div class="form-group col-md-6">
+    <label for="nationality">Nationality</label>
+    <input type="text" id="nationality" name="nationality" 
+        value="{{ optional($profile)->nationality }}" class="form-control">
+</div>
+
                     </div>
 
-                    <!-- Address -->
-               <div class="form-group">
+  <!-- Address -->
+<div class="form-group">
     <label for="address">Address</label>
     <textarea id="address" name="address" class="form-control" rows="2">{{ optional($profile)->address }}</textarea>
 </div>
-                    <!-- Bio -->
-              <div class="form-group">
+
+<!-- Bio -->
+<div class="form-group">
     <label for="bio">Bio</label>
     <textarea id="bio" name="bio" class="form-control" rows="3">{{ optional($profile)->bio }}</textarea>
 </div>
+
 
                     <div class="text-center mt-4">
                         <button type="submit" class="btn btn-primary px-5">Save Changes</button>
@@ -137,49 +162,43 @@ Profile Management
 
                 </form>
          </div>
-          <div class="tab-pane" id="account">
-            <!-- Profile Information Form -->
-            <form action="{{ route('profiles.updateAccount', $user->id) }}" method="POST">
-                @csrf
-                @method('PUT')
+<div class="tab-pane" id="account">
+    <!-- Profile Information Form -->
+    <form action="{{ route('profiles.updateAccount', $user->id) }}" method="POST">
+        @csrf
+        @method('PUT')
 
-
-                <!-- Username -->
-                <div class="form-group mt-4">
-                  <x-form.username
-    label="Username"
-    name="username"
-    value="{{ old('username', $user->username ?? '') }}"
-/>
-
-                </div>
-
-                <!-- Current Password (Optional) -->
-                 <div class="form-group mt-4">
-            <label for="current_password">Current Password</label>
-            <input type="password" id="current_password" name="current_password" class="form-control" required>
+        <!-- Username -->
+        <div class="form-group mt-4">
+            <label for="username">New Username</label>
+            <input type="text" id="username" name="username" value="{{ old('username', $user->username) }}" class="form-control" required>
         </div>
 
-                <!-- New Password (Optional) -->
-                <div class="form-group mt-4">
-                    <x-form.password label="New Password" name="new_password" />
-                </div>
+        <!-- Current Password (Optional) -->
+        <div class="form-group mt-4">
+            <label for="current_password">Current Password</label>
+            <input type="password" id="current_password" name="current_password" class="form-control">
+        </div>
 
-                <!-- Confirm New Password (Optional) -->
-                          <div class="form-group col-mt-4">
-    <label for="password_confirmation">Confirm Password</label>
-    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
-    <small id="confirm-password-warning" class="text-danger d-none">
-        *Passwords do not match.
-    </small>
+        <!-- New Password (Optional) -->
+        <div class="form-group mt-4">
+            <label for="new_password">New Password</label>
+            <input type="password" id="new_password" name="new_password" class="form-control">
+        </div>
+
+        <!-- Confirm New Password (Optional) -->
+        <div class="form-group mt-4">
+            <label for="new_password_confirmation">Confirm New Password</label>
+            <input type="password" id="new_password_confirmation" name="new_password_confirmation" class="form-control">
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary px-5">Save Changes</button>
+        </div>
+    </form>
 </div>
 
-                <!-- Submit Button -->
-                <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-primary px-5">Save Changes</button>
-                </div>
-            </form>
-          </div>
 
         <div class="tab-pane" id="activities">
 
@@ -189,6 +208,7 @@ Profile Management
                 <th>No.</th>
                 <th>Description</th>
                 <th>Action Date</th>
+            
             </tr>
         </thead>
         <tbody>
@@ -197,10 +217,25 @@ Profile Management
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $log->description }}</td>
                     <td>{{ $log->created_at->diffForHumans() }}</td>
+                   
                 </tr>
             @endforeach
         </tbody>
     </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         </div>
 <!-- /.tab-pane -->
@@ -233,25 +268,5 @@ Profile Management
             };
         }
     });
-</script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const password = document.getElementById('new_password');
-    const confirm = document.getElementById('password_confirmation');
-    const warning = document.getElementById('confirm-password-warning');
-
-    function validateMatch() {
-        if (confirm.value !== password.value) {
-            warning.classList.remove('d-none');
-        } else {
-            warning.classList.add('d-none');
-        }
-    }
-
-    confirm.addEventListener('input', validateMatch);
-    password.addEventListener('input', validateMatch);
-});
 </script>
 @endsection
