@@ -33,6 +33,9 @@ use App\Http\Controllers\GcashTransactionController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/admin/db-tables', [DatabaseController::class, 'showTables'])->middleware('auth');
+
 Route::get('/', function () { return redirect('/login');});
 Route::get('/error', function () {return view('error.index');})->name('error');
 Route::get('/about', function () {
