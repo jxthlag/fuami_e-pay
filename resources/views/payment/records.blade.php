@@ -216,7 +216,7 @@ Payment Records
     
     <div class="col-6" style="text-align:left">
         <p style="margin: 0; padding: 0;">Submitted By:</p><br>
-        <p style="text-decoration: underline; margin: 0; padding: 0; margin-left: 30px;"></p>
+        <p style="text-decoration: underline; margin: 0; padding: 0; margin-left: 30px;">{{$cashierName ? $cashierName : ''}}</p>
         <p style="margin: 0; padding: 0; margin-left: 30px;">School Cashier</p>
     </div>
     <div class="col-6"></div>

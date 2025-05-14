@@ -331,7 +331,7 @@ public function records()
     ? ucwords(Auth::user()->profile->firstname . ' ' . Auth::user()->profile->lastname)
     : 'John Smith';
 
-
+    dd('hello');
     return view('payment.records', compact('payments', 'monthYears','cashierName'));
 }
 
