@@ -1,0 +1,79 @@
+[33mcommit d17e7cd94b00a148c99034ec48b8e231bfb728ad[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: royalguard14 <ghaizar.bautista@aclcbutuan.edu.ph>
+Date:   Wed Apr 9 13:06:52 2025 +0800
+
+    laki epay
+
+[1mdiff --git a/resources/views/auth/login.blade.php b/resources/views/auth/login.blade.php[m
+[1mindex 39d3dae..929a1ae 100644[m
+[1m--- a/resources/views/auth/login.blade.php[m
+[1m+++ b/resources/views/auth/login.blade.php[m
+[36m@@ -1,7 +1,7 @@[m
+ @extends('layouts.master2')[m
+ [m
+ @section('content')[m
+[31m-<h3 class="custom-title"> E-PAYMENT</h3>[m
+[32m+[m[32m<h3 class="custom-title-epay"> E-PAYMENT</h3>[m
+      <div class="row">[m
+       <div class="col-lg-6">[m
+         <div class="card login-card">[m
+[1mdiff --git a/resources/views/layouts/master2.blade.php b/resources/views/layouts/master2.blade.php[m
+[1mindex 5b6fa26..6112cce 100644[m
+[1m--- a/resources/views/layouts/master2.blade.php[m
+[1m+++ b/resources/views/layouts/master2.blade.php[m
+[36m@@ -57,6 +57,17 @@[m
+   letter-spacing: 1px;[m
+   white-space: nowrap;  /* Prevent text wrapping */[m
+ }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    .custom-title-epay {[m
+[32m+[m[32m  font-family: 'RobotoBlack', sans-serif;[m
+[32m+[m[32m  color: yellow;[m
+[32m+[m[32m  -webkit-text-stroke: 2px black;[m
+[32m+[m[32m  margin: 0;[m
+[32m+[m[32m  font-size: 5vw;  /* Base font size, responsive with viewport width */[m
+[32m+[m[32m  letter-spacing: 1px;[m
+[32m+[m[32m  white-space: nowrap;  /* Prevent text wrapping */[m
+[32m+[m[32m  }[m
+ /* Adjust logo size and font size on smaller screens */[m
+ @media (max-width: 768px) {[m
+   .logo-img {[m
+[36m@@ -65,6 +76,19 @@[m
+   .custom-title {[m
+     font-size: 3vw; /* Adjust font size for tablets */[m
+   }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m  .custom-title-epay {[m
+[32m+[m[32m  font-family: 'RobotoBlack', sans-serif;[m
+[32m+[m[32m  color: yellow;[m
+[32m+[m[32m  -webkit-text-stroke: 1px black;[m
+[32m+[m[32m  margin: 0;[m
+[32m+[m[32m  font-size: 3vw;  /* Base font size, responsive with viewport width */[m
+[32m+[m[32m  letter-spacing: 1px;[m
+[32m+[m[32m  white-space: nowrap;  /* Prevent text wrapping */[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m
+ }[m
+ /* Adjust logo size and font size on mobile screens */[m
+ @media (max-width: 480px) {[m
+[36m@@ -75,6 +99,17 @@[m
+     font-size: 3vw; /* Larger text size on mobile */[m
+      -webkit-text-stroke: 1px black;[m
+   }[m
+[32m+[m
+[32m+[m[32m    .custom-title-epay {[m
+[32m+[m[32m  font-family: 'RobotoBlack', sans-serif;[m
+[32m+[m[32m  color: yellow;[m
+[32m+[m[32m  -webkit-text-stroke: 1px black;[m
+[32m+[m[32m  margin: 0;[m
+[32m+[m[32m  font-size: 5vw;  /* Base font size, responsive with viewport width */[m
+[32m+[m[32m  letter-spacing: 1px;[m
+[32m+[m[32m  white-space: nowrap;  /* Prevent text wrapping */[m
+[32m+[m[32m  }[m
+[32m+[m
+ }[m
+ /* Footer Logo Styling */[m
+ .footer-logo {[m
