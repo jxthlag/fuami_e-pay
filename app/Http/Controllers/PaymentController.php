@@ -322,20 +322,28 @@ public function records()
 
 
     // Fetch payments and format the month-year
-    $payments = Payment::all();  // Or any query you're using to get the data
+    //$payments = Payment::all();  // Or any query you're using to get the data
 
-    $monthYears = Payment::selectRaw("DATE_FORMAT(payment_date, '%Y-%m') as month_year")
+    //$monthYears = Payment::selectRaw("DATE_FORMAT(payment_date, '%Y-%m') as month_year")
                           ->distinct()
                           ->get()
                           ->pluck('month_year');
 
-    $cashierName = Auth::user()->profile && Auth::user()->profile->firstname && Auth::user()->profile->lastname
+    /*$cashierName = Auth::user()->profile && Auth::user()->profile->firstname && Auth::user()->profile->lastname
     ? ucwords(Auth::user()->profile->firstname . ' ' . Auth::user()->profile->lastname)
     : 'John Smith';
+*/
 
+
+    $payments =[];
+    $monthYears =[];
+    $cashierName =[];
         return response()->json([
         'status' => 'success',
-       ]);
+        'payments' => $payments,
+        'month_years' => $monthYears,
+        'cashier_name' => $cashierName
+    ]);
 
 
     // return view('payment.records', compact('payments', 'monthYears','cashierName'));
