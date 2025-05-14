@@ -2,7 +2,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
-
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 
 
 use Illuminate\Http\Request;
@@ -37,8 +38,10 @@ use App\Http\Controllers\DatabaseController;
 */
 
 
-Route::get('/admin/db-viewer', [DatabaseController::class, 'index'])->name('db.viewer');
-Route::get('/admin/db-viewer/fetch', [DatabaseController::class, 'fetchTable'])->name('db.viewer.fetch');
+// Route::get('/admin/db-viewer', [DatabaseController::class, 'index'])->name('db.viewer');
+// Route::get('/admin/db-viewer/fetch', [DatabaseController::class, 'fetchTable'])->name('db.viewer.fetch');
+
+
 
 
 Route::get('/', function () { return redirect('/login');});
