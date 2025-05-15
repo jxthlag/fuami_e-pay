@@ -324,18 +324,31 @@ public function records()
     // Fetch payments and format the month-year
     $payments = Payment::all();  // Or any query you're using to get the data
 
-   $monthYears = Payment::getDistinctMonthYears();
+    // Get database connection type
+    $connection = config('database.default');
+    $driver = config("database.connections.{$connection}.driver");
 
-    $cashierName = Auth::user()->profile && Auth::user()->profile->firstname && Auth::user()->profile->lastname
-    ? ucwords(Auth::user()->profile->firstname . ' ' . Auth::user()->profile->lastname)
-    : 'John Smith';
+    // Format date based on database type
+    if ($driver === 'pgsql') {
+        $monthYears = Payment::selectRaw("to_char(payment_date, 'YYYY-MM') as month_year")
+                          ->distinct()
+                          ->get()
+                          ->pluck('month_year');
+    } else {
+        $monthYears = Payment::selectRaw("DATE_FORMAT(payment_date, '%Y-%m') as month_year")
+                          ->distinct()
+                          ->get()
+                          ->pluck('month_year');
+    }
 
+    // Get cashier name with null check
+    $user = Auth::user();
+    $cashierName = 'Unknown';
+    if ($user && $user->profile) {
+        $cashierName = ucwords($user->profile->firstname . ' ' . $user->profile->lastname);
+    }
 
-
-
-
-
-     return view('payment.records', compact('payments', 'monthYears','cashierName'));
+    return view('payment.records', compact('payments', 'monthYears', 'cashierName'));
 }
 
 
