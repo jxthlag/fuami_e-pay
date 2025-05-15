@@ -336,7 +336,7 @@ public function records()
 
 //
  
-    $monthYears =[];
+
     $cashierName =[];
         return response()->json([
         'status' => 'success',
