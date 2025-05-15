@@ -337,7 +337,7 @@ public function records()
 ////
  
 
-    $monthYears =[];
+    $monthYears =['hello'];
         return response()->json([
         'status' => 'success',
         'payments' => $payments,
