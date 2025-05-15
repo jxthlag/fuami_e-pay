@@ -333,10 +333,6 @@ public function records()
     ? ucwords(Auth::user()->profile->firstname . ' ' . Auth::user()->profile->lastname)
     : 'John Smith';
 
-
-//
- 
-
     $monthYears =['hello'];
         return response()->json([
         'status' => 'success',
