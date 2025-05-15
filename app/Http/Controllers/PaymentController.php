@@ -336,12 +336,12 @@ public function records()
 
 ///
     $monthYears =["2025-04"];
-        return response()->json([
-        'month_years' => $monthYears,
-    ]);
+    //     return response()->json([
+    //     'month_years' => $monthYears,
+    // ]);
 
 
-    // return view('payment.records', compact('payments', 'monthYears','cashierName'));
+     return view('payment.records', compact('payments', 'monthYears','cashierName'));
 }
 
 
