@@ -36,4 +36,12 @@ public function enrollmentHistory()
 }
 
 
+    // Static method to get distinct month-year values
+    public static function getDistinctMonthYears()
+    {
+        return self::selectRaw("DATE_FORMAT(payment_date, '%Y-%m') as month_year")
+                    ->distinct()
+                    ->pluck('month_year');
+    }
+
 }
