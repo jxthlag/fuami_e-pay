@@ -322,7 +322,7 @@ public function records()
 
 
     // Fetch payments and format the month-year
-    //$payments = Payment::all();  // Or any query you're using to get the data
+    $payments = Payment::all();  // Or any query you're using to get the data
 
     /*$monthYears = Payment::selectRaw("DATE_FORMAT(payment_date, '%Y-%m') as month_year")
                           ->distinct()
@@ -335,7 +335,7 @@ public function records()
 */
 
 
-    $payments =[];
+ 
     $monthYears =[];
     $cashierName =[];
         return response()->json([
